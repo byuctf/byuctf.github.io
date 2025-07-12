@@ -6,91 +6,114 @@
 <title>BYU CTF Flags</title>
 <style>
   body {
-    font-family: Arial, sans-serif;
-    background: #121212;
-    color: #eee;
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-  }
+      margin: 0;
+      padding: 2rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0f1117;
+      color: #f1f1f1;
+    }
 
-  h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #ff4081;
-  }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #00ffc3;
+      margin-bottom: 3rem;
+    }
 
-  .dropdown {
-    background: #1e1e1e;
-    border-radius: 6px;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 5px rgba(255, 64, 129, 0.3);
-  }
+    .card {
+      background-color: #1b1e2b;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
 
-  .dropdown-header {
-    cursor: pointer;
-    padding: 1rem;
-    user-select: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.1rem;
-  }
+    .card:hover {
+      transform: scale(1.01);
+    }
 
-  .dropdown-header:hover {
-    background: #ff4081;
-    color: #121212;
-  }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: bold;
+      background-color: #222638;
+      user-select: none;
+      transition: background 0.3s ease;
+    }
 
-  .dropdown-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    background: #292929;
-    padding: 0 1rem;
-  }
+    .card-header:hover {
+      background-color: #2c3147;
+    }
 
-  .dropdown-content.open {
-    padding: 1rem;
-    max-height: 500px; /* enough to show content */
-  }
+    .arrow {
+      transition: transform 0.3s ease;
+    }
 
-  p {
-    margin: 0.5rem 0 1rem 0;
-    line-height: 1.4;
-  }
+    .arrow.open {
+      transform: rotate(90deg);
+    }
 
-  .files {
-    margin-bottom: 1rem;
-  }
+    .card-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      background-color: #2a2f44;
+      padding: 0 1.5rem;
+    }
 
-  .files a {
-    color: #ff80ab;
-    text-decoration: none;
-    display: inline-block;
-    margin-right: 1rem;
-  }
-  .files a:hover {
-    text-decoration: underline;
-  }
+    .card-content.open {
+      padding: 1.2rem 1.5rem 1.5rem;
+      max-height: 500px;
+    }
 
-  .flag {
-    background: #ff4081;
-    color: #121212;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-family: monospace;
-    user-select: all;
-  }
+    .description {
+      margin-bottom: 1rem;
+    }
 
-  .arrow {
-    transition: transform 0.3s ease;
-  }
+    .files a {
+      display: inline-block;
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      background-color: #00ffc3;
+      color: #000;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: background 0.2s ease;
+    }
 
-  .arrow.open {
-    transform: rotate(90deg);
-  }
+    .files a:hover {
+      background-color: #00c99e;
+    }
+
+    .flag {
+      margin-top: 1rem;
+      background-color: #111;
+      color: #00ff99;
+      padding: 0.6rem 1rem;
+      border-left: 4px solid #00ffc3;
+      font-family: monospace;
+      border-radius: 6px;
+      user-select: all;
+      word-wrap: break-word;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
 </style>
 </head>
 <body>

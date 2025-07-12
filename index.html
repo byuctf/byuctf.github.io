@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BYU CTF Flags</title>
-<style>
-  body {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BYU CTF Flags</title>
+  <style>
+    body {
       margin: 0;
       padding: 2rem;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -61,18 +61,18 @@
     .card-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease;
+      transition: max-height 0.4s ease, padding 0.3s ease;
       background-color: #2a2f44;
       padding: 0 1.5rem;
     }
 
     .card-content.open {
       padding: 1.2rem 1.5rem 1.5rem;
-      max-height: 500px;
+      max-height: 1000px;
     }
 
-    .description {
-      margin-bottom: 1rem;
+    .files {
+      margin: 1rem 0;
     }
 
     .files a {
@@ -93,7 +93,6 @@
     }
 
     .flag {
-      margin-top: 1rem;
       background-color: #111;
       color: #00ff99;
       padding: 0.6rem 1rem;
@@ -114,16 +113,14 @@
         font-size: 2rem;
       }
     }
-</style>
+  </style>
 </head>
 <body>
 
 <h1>BYU CTF Flags</h1>
-
 <div id="problems-container"></div>
 
 <script>
-  // Example problem data
   const problems = [
     {
       title: "Two Images",
@@ -172,29 +169,24 @@
 
   const container = document.getElementById("problems-container");
 
-  problems.forEach((problem, index) => {
-    // Create dropdown container
-    const dropdown = document.createElement("div");
-    dropdown.className = "dropdown";
+  problems.forEach(problem => {
+    const card = document.createElement("div");
+    card.className = "card";
 
-    // Header
     const header = document.createElement("div");
-    header.className = "dropdown-header";
+    header.className = "card-header";
     header.innerHTML = `
       <span>${problem.title}</span>
       <span class="arrow">&#9654;</span>
     `;
 
-    // Content container
     const content = document.createElement("div");
-    content.className = "dropdown-content";
+    content.className = "card-content";
 
-    // Problem description
     const desc = document.createElement("p");
     desc.innerHTML = problem.description;
     content.appendChild(desc);
 
-    // Files list if any
     if (problem.files.length > 0) {
       const filesDiv = document.createElement("div");
       filesDiv.className = "files";
@@ -208,21 +200,19 @@
       content.appendChild(filesDiv);
     }
 
-    // Flag display
     const flagDiv = document.createElement("div");
     flagDiv.className = "flag";
     flagDiv.textContent = problem.flag;
     content.appendChild(flagDiv);
 
-    // Toggle dropdown on header click
     header.addEventListener("click", () => {
-      const isOpen = content.classList.toggle("open");
-      header.querySelector(".arrow").classList.toggle("open", isOpen);
+      content.classList.toggle("open");
+      header.querySelector(".arrow").classList.toggle("open");
     });
 
-    dropdown.appendChild(header);
-    dropdown.appendChild(content);
-    container.appendChild(dropdown);
+    card.appendChild(header);
+    card.appendChild(content);
+    container.appendChild(card);
   });
 </script>
 

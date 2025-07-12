@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BYU CTF Flags</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: #eee;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ff4081;
+  }
+
+  .dropdown {
+    background: #1e1e1e;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(255, 64, 129, 0.3);
+  }
+
+  .dropdown-header {
+    cursor: pointer;
+    padding: 1rem;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .dropdown-header:hover {
+    background: #ff4081;
+    color: #121212;
+  }
+
+  .dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: #292929;
+    padding: 0 1rem;
+  }
+
+  .dropdown-content.open {
+    padding: 1rem;
+    max-height: 500px; /* enough to show content */
+  }
+
+  p {
+    margin: 0.5rem 0 1rem 0;
+    line-height: 1.4;
+  }
+
+  .files {
+    margin-bottom: 1rem;
+  }
+
+  .files a {
+    color: #ff80ab;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 1rem;
+  }
+  .files a:hover {
+    text-decoration: underline;
+  }
+
+  .flag {
+    background: #ff4081;
+    color: #121212;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-family: monospace;
+    user-select: all;
+  }
+
+  .arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .arrow.open {
+    transform: rotate(90deg);
+  }
+</style>
+</head>
+<body>
+
+<h1>BYU CTF Flags</h1>
+
+<div id="problems-container"></div>
+
+<script>
+  // Example problem data
+  const problems = [
+    {
+      title: "Two Images",
+      description: "Here are two images that contain the flag!<br>Challenge Author: Robert Gardner",
+      files: [
+        { name: "share1.png", url: "files/1/share1.png" },
+        { name: "share2.png", url: "files/1/share2.png" }
+      ],
+      flag: "byuctf{v1$u4L_3nCrypt1on67}"
+    },
+    {
+      title: "rsa",
+      description: "Can you figure out how to decrypt this RSA encrypted message?<br>Challenge Author: Robert Gardner",
+      files: [
+        { name: "rsa.txt", url: "files/2/rsa.txt" }
+      ],
+      flag: "-"
+    },
+    {
+      title: "Vigenere",
+      description: "Here is your flag: drzhns{XBl3s3l3_Gt4lMMB200}<br>You may need this key: CTFFUN<br>Challenge Author: Robert Gardner",
+      files: [],
+      flag: "byuctf{VIg3n3r3_Tr4sHHH200}"
+    },
+    {
+      title: "Multi-Layer",
+      description: "Can you crack this encrypted flag? WkVoR2RHUlhlRFJsTWxVd1lUSk5lbVJzT1ZCWU0yUnRaRlJDTWsxWFdqVmhNekE5<br>Challenge Author: Robert Gardner",
+      files: [],
+      flag: "byuctf{m4sk3d_W_enc0d1ngs}"
+    },
+    {
+      title: "Rotate!",
+      description: "yvrzqc{yorq3_c0oz3_1q83}<br>Challenge Author: Robert Gardner",
+      files: [],
+      flag: "byuctf{brut3_f0rc3_1t83}"
+    },
+    {
+      title: "MacroCrazy",
+      description: "Is there anything more to this simple Excel macro?<br>-make sure to hit enable macros after you download the file<br>Challenge Author: Robert Gardner",
+      files: [
+        { name: "MacroCrazy.xlsx", url: "files/3/MacroCrazy.xlsx" }
+      ],
+      flag: "byuctf{ch3ck_4m4cros_32}"
+    }
+  ];
+
+  const container = document.getElementById("problems-container");
+
+  problems.forEach((problem, index) => {
+    // Create dropdown container
+    const dropdown = document.createElement("div");
+    dropdown.className = "dropdown";
+
+    // Header
+    const header = document.createElement("div");
+    header.className = "dropdown-header";
+    header.innerHTML = `
+      <span>${problem.title}</span>
+      <span class="arrow">&#9654;</span>
+    `;
+
+    // Content container
+    const content = document.createElement("div");
+    content.className = "dropdown-content";
+
+    // Problem description
+    const desc = document.createElement("p");
+    desc.textContent = problem.description;
+    content.appendChild(desc);
+
+    // Files list if any
+    if (problem.files.length > 0) {
+      const filesDiv = document.createElement("div");
+      filesDiv.className = "files";
+      problem.files.forEach(file => {
+        const a = document.createElement("a");
+        a.href = file.url;
+        a.textContent = file.name;
+        a.target = "_blank";
+        filesDiv.appendChild(a);
+      });
+      content.appendChild(filesDiv);
+    }
+
+    // Flag display
+    const flagDiv = document.createElement("div");
+    flagDiv.className = "flag";
+    flagDiv.textContent = problem.flag;
+    content.appendChild(flagDiv);
+
+    // Toggle dropdown on header click
+    header.addEventListener("click", () => {
+      const isOpen = content.classList.toggle("open");
+      header.querySelector(".arrow").classList.toggle("open", isOpen);
+    });
+
+    dropdown.appendChild(header);
+    dropdown.appendChild(content);
+    container.appendChild(dropdown);
+  });
+</script>
+
+</body>
+</html>
